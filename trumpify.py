@@ -14,11 +14,11 @@ def make_model():
 				sentences = nltk.sent_tokenize(line.encode("UTF-8"))
 				for sentence in sentences:
 					tokenized_sentence = nltk.word_tokenize(sentence)
-					final = []
+					edited_sentence = []
 					for word in tokenized_sentence:
 						if word not in nltk.corpus.stopwords.words("english") and word not in punctuation:
-							final += [pattern.en.singularize(word)]
-					data += [final]
+							edited_sentence += [pattern.en.singularize(word)]
+					data += [edited_sentence]
 
 			except UnicodeDecodeError:
 				errors += 1
@@ -33,12 +33,21 @@ def trumpify(input_sentence, model, verbose=False, pos_to_search_for=["NN", "JJ"
 
 	punctuation = """!@#$%^&*(){}[]:;"',.<>/?"""
 
-	for word, pos in pattern.en.tag(input_sentence):
+	hard_coded_dict = {"women": "terrorists", "mexican" : "illegal", "mexicans": "illegals", "china": "the enemy", 
+					"obama": "a muslim", "bible": "Art of the Deal", "book": "bible",
+					"favorite": "own", "hawaii": "kenya"}
 
-		singular_form = pattern.en.singularize(word)
+	for word, pos in pattern.en.tag(input_sentence):
+		if verbose == True:
+			print word
+
+		singular_form = pattern.en.singularize(word.lower())
 		singular = singular_form == word
+
+		if word.lower() in hard_coded_dict:
+			final_output += hard_coded_dict[word.lower()] + " "
 		
-		if pos[:2] in pos_to_search_for:
+		elif pos[:2] in pos_to_search_for:
 			try:
 				sim = model.most_similar(positive=[singular_form])
 				changed = False
@@ -51,7 +60,7 @@ def trumpify(input_sentence, model, verbose=False, pos_to_search_for=["NN", "JJ"
 						if singular == True:
 							final_output += new_word + " "
 						else: #needs to be pluralized
-							final_output += pattern.en.pluralize(new_word, pos=pos)
+							final_output += pattern.en.pluralize(new_word, pos=pos) + " "
 						changed = True
 						break #this doesn't seem to work
 
@@ -63,6 +72,9 @@ def trumpify(input_sentence, model, verbose=False, pos_to_search_for=["NN", "JJ"
 					print word, " not found in corpus"
 				if word not in punctuation:
 					final_output += word + " "
+				elif "'" in word:
+					final_output = final_output[:-1]
+					final_output += word + " "
 				else:
 					final_output = final_output[:-1]
 					final_output += word + " "
@@ -70,7 +82,10 @@ def trumpify(input_sentence, model, verbose=False, pos_to_search_for=["NN", "JJ"
 			if verbose == True:
 				print word, "not the proper pos", pos
 
-			if word not in punctuation:
+			if "'" in word:
+				final_output = final_output[:-1]
+				final_output += word + " "
+			elif word not in punctuation:
 				final_output += word + " "
 			else:
 				final_output = final_output[:-1]

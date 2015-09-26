@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-    <LINK REL=StyleSheet HREF="static/style.css" TYPE="text/css">
-        <body style = "background-color: lightgrey">
+    <head>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <LINK REL=StyleSheet HREF="static/style.css" TYPE="text/css">
+        <body style='background-image: url("/static/hero_image_main_2.jpg");background-repeat: no-repeat; background-size:cover;background-position:center;background-size: auto 100%;height:100%;'>
             
             <div id="fb-root"></div>
             
@@ -13,35 +15,30 @@
                      fjs.parentNode.insertBefore(js, fjs);
                      }(document, 'script', 'facebook-jssdk'));</script>
            
-           <h1 style = "text-align: center">
-                
-                Enter your text to be Trumpified!
-            </h1>
             
-            <div id="center">
+            <div id="center" class="data" style="width:85%;background:rgba(255, 255, 255,.5);margin:auto;border-radius:10px; top:10px;position:relative;top:20px;padding:10px;">
+                <h1 style="text-align: center;margin-bottom:20px;">Prepare to be Trumpified!</h1>
                 
                 <form action="." method="POST" id="form">
                     <fieldset>
-                        <legend> Get Trumped </legend>
-                        <!--<input type="text" name="text">--!>
-                        <h2>Input:</h2></br>
-                        <textarea rows="10" cols="100" name="text">{{ input }}</textarea>
+                        <!--<input type="text" name="text">-->
+                        <textarea style="border-radius:5px;border-width:0px;padding:10px;min-width:10px;font-size:20px;max-width:600px;width:100%;" rows="10" cols="100" name="text">{{ input }}</textarea>
                             <br></br>
-                            <input type="submit" name="my-form" value="TRUMPIFY">
+                            <input style="border-radius:5px;border-width:0px;padding:10px;font-size:40px;font-weight:bold" type="submit" name="my-form" value="TRUMPIFY">
                             <br></br>
-                        <h2>Output:</h2></br>
-                            <textarea rows="10" cols="100">{{ output }}</textarea>
-                        <h1>URL: <a href=trumpified/?text={{ url }}>URL</a></h1>
-                         <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://54.165.94.123/trumpified/"+url  data-text="Check out my trumpified text and trumpify yourself!!!!">Tweet</a>
+                            <textarea style="border-radius:5px;border-width:0px;padding:10px;min-width:10px;font-size:20px;max-width:600px;width:100%;" rows="10" cols="100">{{ output }}</textarea>
+                        <!--<h1>URL: <a href=trumpified/?text={{ url }}>URL</a></h1>-->
+                        <h1>Share<h1>
+                         <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://ec2-54-165-94-123.compute-1.amazonaws.com/trumpified/?text={{ url}}"  data-text="Check out my trumpified text and trumpify yourself!!!!">Tweet</a>
                          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
                          
-                         <div class="fb-share-button" data-href="http://54.165.94.123/trumpified/"+url data-layout="button"></div>
-                         <a href="http://reddit.com/submit?url=http://54.165.94.123/trumpified/"+{{ url }};title=Trumpify yourself" target="_blank">
-                         <img src="https://simplesharebuttons.com/images/somacro/reddit.png" alt="Reddit" />
+                         <div class="fb-share-button" data-href="http://ec2-54-165-94-123.compute-1.amazonaws.com/trumpified/?text={{ url }}" data-layout="button"></div>
+                         <a href="http://reddit.com/submit?url=http://ec2-54-165-94-123.compute-1.amazonaws.com/trumpified/?text={{ url }}";title="Trumpify yourself" target="_blank">
+                         <img src="/static/spreddit7.gif" alt="Reddit" />
                          </a>
                     </fieldset>
                 </form>
-                <center><img src="static/trump.jpg" align="top" style="width:1200px;height:600px;" > </center>
             </div>
+            <footer style="height:50px;width:100%;"></footer>
         </body>
 </html>

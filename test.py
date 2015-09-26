@@ -17,7 +17,7 @@ def my_form_post():
     text = request.form['text']
     output = t.trumpify(text.lower(), model)
 
-    return render_template("test.html", input=text.lower(), output=output, url=urllib.quote_plus(output))
+    return render_template("test.html", input=text.lower(), output=output, url=urllib.quote_plus(text.lower()))
 
 @app.route('/trumpified/')
 def my_test():

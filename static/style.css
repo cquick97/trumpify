@@ -7,11 +7,18 @@
 
 .body{
     text-align : center;
-    
-    background-color: lightgrey
 }
 
 #form{
     text-align: center;
 }
 
+div.center {
+    	width:70%; 
+    }
+
+    @media (min-width: 600px) {
+        div.center {
+            width: 90%;
+        }
+    }
