@@ -1,0 +1,17 @@
+.h1{
+    font-size: 20;
+    color: red;
+    font-family: verdana;
+    text-align: center;
+}
+
+.body{
+    text-align : center;
+    
+    background-color: lightgrey
+}
+
+#form{
+    text-align: center;
+}
+

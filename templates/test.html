@@ -1,19 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<body style = "background-color: lightgrey">
-    
-    <h1 style = "text-align: center">
-        
-        <font size = "20" color = "red"> Enter your text to be Trumpified! </font>
-    </h1>
-    
-    <form action="." method="POST" style = "text-align: center">
-       <fieldset>
-           <legend> Get Trumped </legend>
-        <input type="text" name="text">
-        <input type="submit" name="my-form" value="TRUMPIFY">
-            </fieldset>
-    </form>
-    
-</body>
+    <LINK REL=StyleSheet HREF="static/style.css" TYPE="text/css">
+        <body style = "background-color: lightgrey">
+            
+            <div id="fb-root"></div>
+            
+            <script>(function(d, s, id) {
+                     var js, fjs = d.getElementsByTagName(s)[0];
+                     if (d.getElementById(id)) return;
+                     js = d.createElement(s); js.id = id;
+                     js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4";
+                     fjs.parentNode.insertBefore(js, fjs);
+                     }(document, 'script', 'facebook-jssdk'));</script>
+           
+           <h1 style = "text-align: center">
+                
+                Enter your text to be Trumpified!
+            </h1>
+            
+            <div id="center">
+                
+                <form action="." method="POST" id="form">
+                    <fieldset>
+                        <legend> Get Trumped </legend>
+                        <!--<input type="text" name="text">--!>
+                        <h2>Input:</h2></br>
+                        <textarea rows="10" cols="100" name="text">{{ input }}</textarea>
+                            <br></br>
+                            <input type="submit" name="my-form" value="TRUMPIFY">
+                            <br></br>
+                        <h2>Output:</h2></br>
+                            <textarea rows="10" cols="100">{{ output }}</textarea>
+                        <h1>URL: <a href=trumpified/?text={{ url }}>URL</a></h1>
+                         <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://54.165.94.123/trumpified/"+url  data-text="Check out my trumpified text and trumpify yourself!!!!">Tweet</a>
+                         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                         
+                         <div class="fb-share-button" data-href="http://54.165.94.123/trumpified/"+url data-layout="button"></div>
+                         <a href="http://reddit.com/submit?url=http://54.165.94.123/trumpified/"+{{ url }};title=Trumpify yourself" target="_blank">
+                         <img src="https://simplesharebuttons.com/images/somacro/reddit.png" alt="Reddit" />
+                         </a>
+                    </fieldset>
+                </form>
+                <center><img src="static/trump.jpg" align="top" style="width:1200px;height:600px;" > </center>
+            </div>
+        </body>
 </html>
